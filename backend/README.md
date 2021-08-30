@@ -66,6 +66,7 @@ go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@lat
 ```
 
 그런다고 해도, 다시 아래와 같이 cgapp-postgres 호스트를 찾을 수 없다는 에러가 나온다.
+migrate 명령에서 port:5432를 추가했음을 주의하자(@cgapp-postgres:5432, 생성된 템플릿에는 포트가 없다).
 
 ```bash
 make migrate.up
