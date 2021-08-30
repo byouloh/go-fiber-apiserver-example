@@ -21,7 +21,7 @@ Fiber web framework을 선택한 이유는
 2. 설치 후 cgapp create 명령으로 예제를 생성하는 경우 frontend가 생성되지 않는다면, npm이 7.x 버전 이상인지 확인할 것 : npm install -g npm@latest
 3. go.mod 파일에서 모쥴 이름이 github.com/create-go-app/xxx와 같은 형태로 되어 있으니, 이와 관계된 항목들은 자신이 원하는 모쥴명으로 바꾼다(현재 게시된 예제에 바뀌어져있다: example.com/fiber-apiserver로 바꾸어서 썼다). 그리고, 모쥴명이 필요한 다른 파일들도 모두 바꾸어야한다.
 4. .gitignore 파일에서 **/app/을 주석처리하는게 좋다(app을 git에 올리려면).
-5. 이제 backend/README.md 파일로 넘어가자 : 도커로 돌리기 위해서는, 또는 그냥 실행시키기 위해서는 도커부터 시작해서 추가적으로 3개 이상의 모쥴을 추가 설치해야만 한다. 또한, postgres driver와 migrate 문제도 있으니 정상적으로 실행하려면 꼭 읽어봐야한다. 문제가 되는 부분만 아래에 붙여놓겠다.
+5. 이제 backend/README.md 파일로 넘어가자 : 도커로 돌리거나, 또는 그냥 실행시키기 위해서는 도커와 추가적으로 3개 이상의 모쥴을 설치해야만 한다. 또한, postgres driver와 migrate 문제도 있으니 정상적으로 실행하려면 꼭 읽어봐야한다. 문제가 되는 부분만 아래에 붙여놓겠다.
 
 ## backend/app 실행시 문제
 1. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
