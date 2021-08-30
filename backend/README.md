@@ -71,7 +71,7 @@ make: *** [migrate.up] 오류 1
 
 ```bash
 make migrate.up
-migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -database "postgres://postgres:password@220.87.220.250:5432/postgres?sslmode=disable" up
+migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -database "postgres://postgres:password@100.100.220.220:5432/postgres?sslmode=disable" up
 1/u create_init_tables (20.0987ms)
 ```
 
