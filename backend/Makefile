@@ -2,8 +2,8 @@
 
 APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
-MIGRATIONS_FOLDER = D:/works/go/go-fiber-api-server/backend/platform/migrations
-DATABASE_URL = postgres://postgres:password@220.87.220.250:5432/postgres?sslmode=disable
+MIGRATIONS_FOLDER = D:/YOUR_DIR/go-fiber-apiserver-example/backend/platform/migrations
+DATABASE_URL = postgres://postgres:password@YOUR_IP:5432/postgres?sslmode=disable
 
 clean:
 	rm -rf ./build
