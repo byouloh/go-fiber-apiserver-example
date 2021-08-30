@@ -23,7 +23,7 @@ Fiber web framework을 선택한 이유는
 4. .gitignore 파일에서 **/app/을 주석처리하는게 좋다(app을 git에 올리려면).
 5. 이제 backend/README.md 파일로 넘어가자 : 도커로 돌리기 위해서는, 또는 그냥 실행시키기 위해서는 도커부터 시작해서 추가적으로 3개 이상의 모쥴을 추가 설치해야만 한다. 또한, postgres driver와 migrate 문제도 있으니 정상적으로 실행하려면 꼭 읽어봐야한다. 문제가 되는 부분만 아래에 붙여놓겠다.
 
-##backend/app 실행시 문제
+## backend/app 실행시 문제
 1. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
    - windows 10에서 Docker Desktop 설치.
 
