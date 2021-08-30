@@ -1,6 +1,8 @@
 # go-fiber-apiserver-example
 Go fiber webframework을 사용하여 web api server를 만드는 예제
 
+참조할 글 : https://dev.to/koddr/build-a-restful-api-on-go-fiber-postgresql-jwt-and-swagger-docs-in-isolated-docker-containers-475j
+
 이 예제는 [create-go-app/cli](https://github.com/create-go-app/cli)로 만들어진 fiber web framework을 이용한 api server 예제다.
 create-go-app 명령어를 이용하여 웹 api server를 만들어 실행해보는 과정에서 발생한 각종 오류를 기록해두고자 글을 쓰게 되었다.
 
