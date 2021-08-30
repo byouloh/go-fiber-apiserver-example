@@ -20,21 +20,22 @@ Fiber web framework을 선택한 이유는
 이 툴을 사용할 때 다음과 같은 문제가 있었다(바로 backend/README.md 파일로 넘어가도 된다).
 
 1. cgapp을 설치하기 위한 절차를 따름 : go 설치, go install github.com/create-go-app/cli@latest
-2. 설치 후 cgapp create 명령으로 예제를 생성하는 경우 frontend가 생성되지 않는다면, npm이 7.x 버전 이상인지 확인할 것 : npm install -g npm@latest
+2. 설치 후 cgapp create 명령으로 예제를 생성하는 경우 frontend가 생성되지 않는다면, npm이 7.x 버전 이상인지 확인할 것 : 
+``` bash
+npm install -g npm@latest
+```
 3. go.mod 파일에서 모쥴 이름이 github.com/create-go-app/xxx와 같은 형태로 되어 있으니, 이와 관계된 항목들은 자신이 원하는 모쥴명으로 바꾼다(현재 게시된 예제에 바뀌어져있다: example.com/fiber-apiserver로 바꾸어서 썼다). 그리고, 모쥴명이 필요한 다른 파일들도 모두 바꾸어야한다.
 4. .gitignore 파일에서 **/app/을 주석처리하는게 좋다(app을 git에 올리려면).
 5. 이제 backend/README.md 파일로 넘어가자 : 도커로 돌리거나, 또는 그냥 실행시키기 위해서는 도커와 추가적으로 3개 이상의 모쥴을 설치해야만 한다. 또한, postgres driver와 migrate 문제도 있으니 정상적으로 실행하려면 꼭 읽어봐야한다. 문제가 되는 부분만 아래에 붙여놓겠다.
 
 ## backend/app 실행시 문제
 1. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
-   - windows 10에서 Docker Desktop 설치.
+- windows 10에서는 Docker Desktop을 설치해서 사용하는 것을 권장한다.
+- [github.com/golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
+- [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
+- [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
 
-   - [github.com/golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
-   - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
-   - [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
-
-migrate이 제대로 설치되지 않는다.
-make docker.run을 실행시키면 migrate.up이 실패한다. make migrate.up을 실행해도 마찬가지.
+migrate과 securego가 제대로 설치되지 않는다.
 
 ```bash
 go get github.com/golang-migrate/migrate/v4
@@ -42,7 +43,7 @@ go install github.com/swaggo/swag@latest
 go install github.com/securego/gosec@latest
 ```
 
-windows 10 커맨드 창에서
+migrate과 securego가 제대로 설치하려면 다음과같이 한다. windows 10 커맨드 창에서,
 
 ```bash
 cd C:\Users\USERID\go\pkg\mod\github.com\golang-migrate\migrate\v4@v4.14.1\cmd\migrate
@@ -59,6 +60,8 @@ windows 10에서 Docker Desktop을 실행하고,
 ```bash
 make docker.run
 ```
+
+make docker.run을 실행시키면 migrate.up이 실패한다. make migrate.up을 실행해도 마찬가지.
 
 migrate.up에서 unknown driver 에러가 발생하면, 다음의 명령을 명령창에서 실행한다.
 (참고: https://github.com/golang-migrate/migrate/tree/master/cmd/migrate#with-go-toolchain)
