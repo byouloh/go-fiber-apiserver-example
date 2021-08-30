@@ -52,6 +52,13 @@ go install .
 cd C:\Users\USERID\go\pkg\mod\github.com\securego\gosec@v0.0.0-20200401082031-e946c8c39989\cmd\gosec
 go install .
 ```
+제대로 설치되었는지 다음의 명령을 통해 확인한다.
+
+```bash
+swag -v
+migrate -version
+gosec -version
+```
 
 2. Run project by this command:
 
