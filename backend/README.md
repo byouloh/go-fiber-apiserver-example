@@ -23,7 +23,7 @@ cgapp create
 - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
 - [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
 
-migrate과 securego가 제대로 설치되지 않는다.
+다음의 명령으로 필요한 3가지 모쥴을 설치한다.
 
 ```bash
 go get github.com/golang-migrate/migrate/v4
@@ -31,7 +31,8 @@ go install github.com/swaggo/swag@latest
 go install github.com/securego/gosec@latest
 ```
 
-migrate과 securego가 제대로 설치하려면 다음과같이 한다. windows 10 커맨드 창에서,
+그러나 migrate와 securego는 제대로 설치되지 않는다. 해당 모쥴들이 추가된 이후에 설치된 디렉토리로 이동해서 다시 설치해야만 정상적으로 동작한다.
+windows 10 커맨드 창에서,
 
 ```bash
 cd C:\Users\USERID\go\pkg\mod\github.com\golang-migrate\migrate\v4@v4.14.1\cmd\migrate
@@ -40,6 +41,7 @@ go install .
 cd C:\Users\USERID\go\pkg\mod\github.com\securego\gosec@v0.0.0-20200401082031-e946c8c39989\cmd\gosec
 go install .
 ```
+
 제대로 설치되었는지 다음의 명령을 통해 확인한다.
 
 ```bash
