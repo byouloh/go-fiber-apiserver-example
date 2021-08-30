@@ -18,14 +18,12 @@ cgapp create
 
 2. Rename `.env.example` to `.env` and fill it with your environment values.
 3. Install [Docker](https://www.docker.com/get-started) and the following useful Go tools to your system:
-   - windows 10에서 Docker Desktop 설치.
+- windows 10에서는 Docker Desktop을 설치해서 사용하는 것을 권장한다.
+- [github.com/golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
+- [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
+- [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
 
-   - [github.com/golang-migrate/migrate](https://github.com/golang-migrate/migrate#cli-usage) for apply migrations
-   - [github.com/swaggo/swag](https://github.com/swaggo/swag) for auto-generating Swagger API docs
-   - [github.com/securego/gosec](https://github.com/securego/gosec) for checking Go security issues
-
-migrate이 제대로 설치되지 않는다.
-4번의 실행에서 make docker.run을 실행시키면 migrate.up이 실패한다. make migrate.up을 실행해도 마찬가지.
+migrate과 securego가 제대로 설치되지 않는다.
 
 ```bash
 go get github.com/golang-migrate/migrate/v4
@@ -33,7 +31,7 @@ go install github.com/swaggo/swag@latest
 go install github.com/securego/gosec@latest
 ```
 
-windows 10 커맨드 창에서
+migrate과 securego가 제대로 설치하려면 다음과같이 한다. windows 10 커맨드 창에서,
 
 ```bash
 cd C:\Users\USERID\go\pkg\mod\github.com\golang-migrate\migrate\v4@v4.14.1\cmd\migrate
@@ -41,6 +39,13 @@ go install .
 
 cd C:\Users\USERID\go\pkg\mod\github.com\securego\gosec@v0.0.0-20200401082031-e946c8c39989\cmd\gosec
 go install .
+```
+제대로 설치되었는지 다음의 명령을 통해 확인한다.
+
+```bash
+swag -v
+migrate -version
+gosec -version
 ```
 
 4. Run project by this command:
@@ -50,6 +55,8 @@ windows 10에서 Docker Desktop을 실행하고,
 ```bash
 make docker.run
 ```
+
+make docker.run을 실행시키면 migrate.up이 실패한다. make migrate.up을 실행해도 마찬가지.
 
 migrate.up에서 unknown driver 에러가 발생하면, 다음의 명령을 명령창에서 실행한다.
 (참고: https://github.com/golang-migrate/migrate/tree/master/cmd/migrate#with-go-toolchain)
