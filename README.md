@@ -69,6 +69,15 @@ gosec -version
 
 windows 10에서 Docker Desktop을 실행하고,
 
+docker.run 명령중 migrate.up을 실행하기전에
+backend/Makefile에서 작업 디렉토리를 자신의 디렉토리로 바꿔줘야한다(바꾸지 않으면 path 없다고 에러남)
+
+```bash
+MIGRATIONS_FOLDER = Your-working-directory/go-fiber-api-server/backend/platform/migrations
+```
+
+docker.run 실행
+
 ```bash
 make docker.run
 ```
