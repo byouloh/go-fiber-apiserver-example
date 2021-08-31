@@ -105,6 +105,8 @@ migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -datab
 
 5. Go to API Docs page (Swagger): [127.0.0.1:5000/swagger/index.html](http://127.0.0.1:5000/swagger/index.html)
 
+![screenshot](https://user-images.githubusercontent.com/3069673/131583232-5d3e336c-2228-4359-9c91-c3c6c8d079e3.PNG)
+
 ![Screenshot](https://user-images.githubusercontent.com/11155743/112715187-07dab100-8ef0-11eb-97ea-68d34f2178f6.png)
 
 ## 📦 Used packages
