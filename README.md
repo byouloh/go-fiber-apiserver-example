@@ -87,6 +87,9 @@ make docker.run을 실행시키면 migrate.up이 실패한다. make migrate.up�
 migrate.up에서 unknown driver 에러가 발생하면, 다음의 명령을 명령창에서 실행한다.
 (참고: https://github.com/golang-migrate/migrate/tree/master/cmd/migrate#with-go-toolchain)
 
+database/sql/driver 모쥴은 postgresql의 driver를 실제로 설치하는 것은 아니다.
+따라서, 별도로 postgresql의 driver를 설치해줘야 postgresql DB를 제어할 수 있다.
+
 ```bash
 go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 ```
