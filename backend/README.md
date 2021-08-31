@@ -31,7 +31,7 @@ go install github.com/swaggo/swag@latest
 go install github.com/securego/gosec@latest
 ```
 
-그러나 migrate와 securego는 제대로 설치되지 않는다. 해당 모쥴들이 추가된 이후에 설치된 디렉토리로 이동해서 다시 설치해야만 정상적으로 동작한다.
+migrate, swag, securego가 제대로 설치되지 않는 경우, 해당 모쥴들이 추가된 이후에 설치된 디렉토리로 이동해서 다시 설치해야만 정상적으로 동작한다.
 windows 10 커맨드 창에서,
 
 ```bash
@@ -39,6 +39,9 @@ cd C:\Users\USERID\go\pkg\mod\github.com\golang-migrate\migrate\v4@v4.14.1\cmd\m
 go install .
 
 cd C:\Users\USERID\go\pkg\mod\github.com\securego\gosec@v0.0.0-20200401082031-e946c8c39989\cmd\gosec
+go install .
+
+cd C:\Users\USERID\go\pkg\mod\github.com\swaggo\swag@v1.7.1\cmd\swag
 go install .
 ```
 
