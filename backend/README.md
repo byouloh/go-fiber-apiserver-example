@@ -57,6 +57,15 @@ gosec -version
 
 windows 10에서 Docker Desktop을 실행하고,
 
+docker.run 명령중 migrate.up을 실행하기전에
+backend/Makefile에서 작업 디렉토리를 자신의 디렉토리로 바꿔줘야한다(바꾸지 않으면 path 없다고 에러남)
+
+```bash
+MIGRATIONS_FOLDER = Your-working-directory/go-fiber-api-server/backend/platform/migrations
+```
+
+docker.run 실행
+
 ```bash
 make docker.run
 ```
@@ -66,8 +75,11 @@ make docker.run을 실행시키면 migrate.up이 실패한다. make migrate.up�
 migrate.up에서 unknown driver 에러가 발생하면, 다음의 명령을 명령창에서 실행한다.
 (참고: https://github.com/golang-migrate/migrate/tree/master/cmd/migrate#with-go-toolchain)
 
+database/sql/driver 모쥴은 postgresql의 driver를 실제로 설치하는 것은 아니다.
+따라서, 별도로 postgresql의 driver를 설치해줘야 postgresql DB를 제어할 수 있다.
+
 ```bash
-go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest 
 ```
 
 그런다고 해도, 다시 아래와 같이 cgapp-postgres 호스트를 찾을 수 없다는 에러가 나온다.
