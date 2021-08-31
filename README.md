@@ -114,3 +114,6 @@ migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -datab
 ```
 
 여기까지 에러를 수정하고 나면 make docker.run 명령이 에러없이 정상적으로 실행된다.
+
+![screenshot](https://user-images.githubusercontent.com/3069673/131583090-db6b8022-39ef-4663-8216-7b0c09dcd3e6.PNG)
+
