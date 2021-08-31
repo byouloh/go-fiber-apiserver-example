@@ -3,7 +3,9 @@
 APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
 MIGRATIONS_FOLDER = D:/YOUR_DIR/go-fiber-apiserver-example/backend/platform/migrations
-DATABASE_URL = postgres://postgres:password@YOUR_IP:5432/postgres?sslmode=disable
+# Windows나 MacOS 환경에서는 host ip나 host.docker.internal로 postgresql db host에 접근할 수 있다.
+#DATABASE_URL = postgres://postgres:password@YOUR_IP:5432/postgres?sslmode=disable
+DATABASE_URL = postgres://postgres:password@host.docker.internal:5432/postgres?sslmode=disable
 
 clean:
 	rm -rf ./build

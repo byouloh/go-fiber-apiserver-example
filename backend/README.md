@@ -80,11 +80,12 @@ error: dial tcp: lookup cgapp-postgres: no such host
 make: *** [migrate.up] 오류 1
 ```
 
-호스트 네임으로 데이타베이스 호스트를 찾지 못하고, 도커가 실행되고 있는 머신의 ip 주소를 호스트네임에 넣어야한다.
+Windows나 MacOS 환경에서는 host ip나 host.docker.internal로 postgresql db host에 접근할 수 있다.
+호스트 네임으로 데이타베이스 호스트를 찾지 못하는 경우, 도커가 실행되고 있는 머신의 ip 주소, 또는 host.docker.internal를 호스트네임에 넣으면 된다.
 
 ```bash
 make migrate.up
-migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -database "postgres://postgres:password@100.100.220.220:5432/postgres?sslmode=disable" up
+migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -database "postgres://postgres:password@host.docker.internal:5432/postgres?sslmode=disable" up
 1/u create_init_tables (20.0987ms)
 ```
 

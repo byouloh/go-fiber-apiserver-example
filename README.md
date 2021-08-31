@@ -16,11 +16,11 @@ Fiber web framework을 선택한 이유는
 - node.js의 express.js와 같은 형태로 사용하도록 만들어져서 node를 다룬 사람이면 쉽다
 - go 언어를 먼저 학습하지 말고 바로 fiber를 공부하면서 go를 학습해도 된다(이건 fiber만 해당하는 사항은 아님)
 
-이상의 이유로 fiber api server를 살펴보다가 우연히 github.com/create-go-app/cli 툴을 알게되었다. 
+이상의 이유로 fiber api server를 살펴보다가 우연히 github.com/create-go-app/cli 툴을 알게되었다.
 이 툴을 사용할 때 다음과 같은 문제가 있었다(바로 backend/README.md 파일로 넘어가도 된다).
 
 1. cgapp을 설치하기 위한 절차를 따름 : go 설치, go install github.com/create-go-app/cli@latest
-2. 설치 후 cgapp create 명령으로 예제를 생성하는 경우 frontend가 생성되지 않는다면, npm이 7.x 버전 이상인지 확인할 것 : 
+2. 설치 후 cgapp create 명령으로 예제를 생성하는 경우 frontend가 생성되지 않는다면, npm이 7.x 버전 이상인지 확인할 것 :
 ``` bash
 npm install -g npm@latest
 ```
@@ -92,11 +92,12 @@ error: dial tcp: lookup cgapp-postgres: no such host
 make: *** [migrate.up] 오류 1
 ```
 
-호스트 네임으로 데이타베이스 호스트를 찾지 못하고, 도커가 실행되고 있는 머신의 ip 주소를 호스트네임에 넣어야한다.
+Windows나 MacOS 환경에서는 host ip나 host.docker.internal로 postgresql db host에 접근할 수 있다.
+호스트 네임으로 데이타베이스 호스트를 찾지 못하는 경우, 도커가 실행되고 있는 머신의 ip 주소, 또는 host.docker.internal를 호스트네임에 넣으면 된다.
 
 ```bash
 make migrate.up
-migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -database "postgres://postgres:password@100.100.220.220:5432/postgres?sslmode=disable" up
+migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -database "postgres://postgres:password@host.docker.internal:5432/postgres?sslmode=disable" up
 1/u create_init_tables (20.0987ms)
 ```
 
