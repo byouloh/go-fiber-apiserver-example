@@ -2,10 +2,13 @@
 
 APP_NAME = apiserver
 BUILD_DIR = $(PWD)/build
-MIGRATIONS_FOLDER = D:/YOUR_DIR/go-fiber-apiserver-example/backend/platform/migrations
+MIGRATIONS_FOLDER = D:/work/go/go-fiber-apiserver-example/backend/platform/migrations
 # Windows나 MacOS 환경에서는 host ip나 host.docker.internal로 postgresql db host에 접근할 수 있다.
-#DATABASE_URL = postgres://postgres:password@YOUR_IP:5432/postgres?sslmode=disable
-DATABASE_URL = postgres://postgres:password@host.docker.internal:5432/postgres?sslmode=disable
+#DATABASE_URL = postgres://postgres:password@YOUR_IP:5432/testDB?sslmode=disable
+# PostgreSQL
+DATABASE_URL = postgres://postgres:password@host.docker.internal:5432/testDB?sslmode=disable
+# MySQL
+# DATABASE_URL = mysql://root:password@host.docker.internal:3306/testDB
 
 clean:
 	rm -rf ./build
@@ -35,7 +38,7 @@ migrate.down:
 migrate.force:
 	migrate -path $(MIGRATIONS_FOLDER) -database "$(DATABASE_URL)" force $(version)
 
-docker.run: docker.network docker.postgres swag.init docker.fiber docker.redis migrate.up
+docker.run: docker.network docker.postgres docker.mysql swag.init docker.fiber docker.redis migrate.up
 
 docker.network:
 	docker network inspect dev-network >/dev/null 2>&1 || \
@@ -46,49 +49,51 @@ docker.fiber.build:
 
 docker.fiber: docker.fiber.build
 	docker run --rm -d \
-		--name cgapp-fiber \
+		--name go-fiber \
 		--network dev-network \
 		-p 5000:5000 \
 		fiber
 
 docker.postgres:
 	docker run --rm -d \
-		--name cgapp-postgres \
+		--name postgres-container \
 		--network dev-network \
 		-e POSTGRES_USER=postgres \
 		-e POSTGRES_PASSWORD=password \
 		-e POSTGRES_DB=testDB \
 		-v ${HOME}/dev-postgres/data/:/var/lib/postgresql/data \
-		-p 5433:5433 \
+		-p 5432:5432 \
 		postgres
 
 docker.mysql:
-	docker run --rm -d \
-		--name cgapp-mysql \
-		--network dev-network \
+  docker run -d -p 3306:3306 \
 		-e MYSQL_ROOT_PASSWORD=password \
+		--name mysql-container \
+		--network dev-network \
 		-e MYSQL_DB=testDB \
 		-v ${HOME}/dev-mysql/data/:/var/lib/mysql/data \
-		-p 3306:3306 \
-		mysql
+		mysql:8.0.17
 
 docker.redis:
 	docker run --rm -d \
-		--name cgapp-redis \
+		--name redis-container \
 		--network dev-network \
 		-p 6379:6379 \
 		redis
 
-docker.stop: docker.stop.fiber docker.stop.postgres docker.stop.redis
+docker.stop: docker.stop.fiber docker.stop.postgres docker.stop.mysql docker.stop.redis
 
 docker.stop.fiber:
-	docker stop cgapp-fiber
+	docker stop go-fiber
 
 docker.stop.postgres:
-	docker stop cgapp-postgres
+	docker stop postgres-container
+
+docker.stop.mysql:
+	docker stop mysql-container
 
 docker.stop.redis:
-	docker stop cgapp-redis
+	docker stop redis-container
 
 swag.init:
 	swag init

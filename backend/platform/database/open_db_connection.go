@@ -12,6 +12,8 @@ type Queries struct {
 func OpenDBConnection() (*Queries, error) {
 	// Define a new PostgreSQL connection.
 	db, err := PostgreSQLConnection()
+	// Define a new MySQL connection.
+	// db, err := MySQLConnection()
 	if err != nil {
 		return nil, err
 	}
