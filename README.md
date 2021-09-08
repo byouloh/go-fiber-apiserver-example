@@ -115,5 +115,50 @@ migrate -path D:/works/go/go-fiber-api-server/backend/platform/migrations -datab
 
 여기까지 에러를 수정하고 나면 make docker.run 명령이 에러없이 정상적으로 실행된다.
 
+## 특정 포트를 사용하려는데 에러가 발생할 때
+
+localhost에서 실행할 때, ｢wds｣: Error: listen EACCES: permission denied 0.0.0.0:4100 에러가 발생한다면,
+
+```bash
+netsh interface ipv4 show excludedportrange protocol=tcp
+```
+명령으로 WSL에 의해 포트가 이미 점유되지 않았는지 확인하고 해당 포트 범위를 피해서 사용할 것.
+wsl은 윈도우가 부팅될 때마다 점유하는 포트 범위가 달리진다.
+
+https://superuser.com/questions/1437780/how-to-fix-listen-eacces-permission-denied-on-any-port/1568476#1568476
+
+## Rancher Desktop으로 실행하기
+
+https://rancherdesktop.io/ 에서 윈도우 버전을 다운받아 설치하고(2021년9월8일기준 0.4.1 : https://github.com/rancher-sandbox/rancher-desktop/releases - 버전 이름을 클릭하면 다운로드 받을 수 있는 파일목록이 뜬다.),
+
+https://github.com/rancher/kim 으로 Dockerfile을 빌드하면 된다. Rancher Desktop이 내부적으로 container 빌드를 위해 kim을 사용하기 때문이다.
+
+```bash
+cd ./backend/  : Dockerfile이 있는 디렉토리로 이동.
+kim build .
+```
+
+이 후, ./backend/yaml 디렉토리내의 yaml 파일들을 쿠버네티스로 실행시킨다.
+
+## minikube로 실행하기
+
+관리자 권한으로 cmd 또는 powershell 실행후 다음을 실행
+
+minikube start --vm-driver=hyperv --hyperv-virtual-switch="Default Switch" --cpus=4 --memory=4096
+
+또는,
+
+minikube start 로 실행하면 자동으로 hyperv 드라이버를 선택한다.(cpus=2, memory=6000MB, disk=20000MB)
+
+minikube status로 상태를 확인 후, 정상적으로 kubelet: Running으로 돌고 있으면,
+
+./yaml 디렉토리 내부의 yaml 파일들을 다음의 순서로 실행시킨다.
+
+
+
+
+
+
+
 ![screenshot](https://user-images.githubusercontent.com/3069673/131583090-db6b8022-39ef-4663-8216-7b0c09dcd3e6.PNG)
 
