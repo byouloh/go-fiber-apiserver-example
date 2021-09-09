@@ -16,6 +16,7 @@ COPY . .
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 RUN go build -ldflags="-s -w" -o apiserver .
 
+# scratch 이미지를 이용한 GO 이미지 경량화 방법 : https://lynlab.co.kr/blog/64
 FROM scratch
 
 # Copy binary and config files from /build to root folder of scratch container.
