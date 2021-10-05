@@ -14,6 +14,22 @@ func ConnectionURLBuilder(n string) (string, error) {
 	switch n {
 	case "postgres":
 		// URL for PostgreSQL connection.
+		// "postgres://YourUserName:YourPassword@YourHostname:5432/YourDatabaseName"
+		// DATABASE_URL=postgres://{user}:{password}@{hostname}:{port}/{database-name}
+		// db, err := sql.Open("postgres", os.Getenv("DB_URL"))
+		// DB_URL=postgres://testuser:testpassword@localhost/testmooc
+		// db, err := sqlx.Connect("pgx","postgresql://user:pass@localhost:5433/mydb")
+		// const (
+		// 	host     = "localhost"
+		// 	port     = 5432
+		// 	user     = "postgres"
+		// 	password = "your-password"
+		// 	dbname   = "calhounio_demo"
+		//   )
+		// 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+		//     "password=%s dbname=%s sslmode=disable",
+		//     host, port, user, password, dbname)
+		//   db, err := sql.Open("postgres", psqlInfo)
 		url = fmt.Sprintf(
 			"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 			os.Getenv("POSTGRES_HOST"),
@@ -25,6 +41,10 @@ func ConnectionURLBuilder(n string) (string, error) {
 		)
 	case "mysql":
 		// URL for MySQL connection.
+		// db, err = sql.Open("mysql", dbUser+":"+dbPassword+"@"+dbProtocol+"("+dbAddress+":"+dbPort+")/"+dbName)
+		// db, err := sqlx.Connect("mysql", "test:test@(localhost:3306)/test")
+		// "user=%s:password=%s@host=%s:port=%s/dbname=%s", "%s:%s@%s:%s/%s"
+		// DATABASE_URL=mysql://{user}:{password}@{hostname}:{port}/{database-name}
 		url = fmt.Sprintf(
 			"user=%s password=%s host=%s port=%s dbname=%s",
 			os.Getenv("MYSQL_USER"),

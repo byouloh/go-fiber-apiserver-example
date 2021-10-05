@@ -25,6 +25,9 @@ func MySQLConnection() (*sqlx.DB, error) {
 	}
 
 	// Define database connection for MySQL.
+	// db, err = sql.Open("mysql", dbUser+":"+dbPassword+"@"+dbProtocol+"("+dbAddress+":"+dbPort+")/"+dbName)
+	// db, err := sql.Open("mysql", "username:password@tcp(127.0.0.1:3306)/test")
+	// db, err := sqlx.Connect("mysql", "test:test@(localhost:3306)/test")
 	db, err := sqlx.Connect("mysql", mysqlConnURL)
 	if err != nil {
 		return nil, fmt.Errorf("error, not connected to database, %w", err)

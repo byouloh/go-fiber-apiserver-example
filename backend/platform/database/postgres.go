@@ -27,6 +27,9 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	}
 
 	// Define database connection for PostgreSQL.
+	// db, err := sql.Open("postgres", os.Getenv("DB_URL"))
+	// DB_URL=postgres://testuser:testpassword@localhost/testmooc
+	// db, err := sqlx.Connect("pgx","postgresql://user:pass@localhost:5433/mydb")
 	db, err := sqlx.Connect("pgx", postgresConnURL)
 	if err != nil {
 		return nil, fmt.Errorf("error, not connected to database, %w", err)
