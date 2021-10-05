@@ -50,7 +50,7 @@ func UserSignUp(c *fiber.Ctx) error {
 	}
 
 	// Create database connection.
-	db, err := database.OpenDBConnection()
+	db, err := database.OpenDBConnection("postgres")
 	if err != nil {
 		// Return status 500 and database connection error.
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
@@ -133,7 +133,7 @@ func UserSignIn(c *fiber.Ctx) error {
 	}
 
 	// Create database connection.
-	db, err := database.OpenDBConnection()
+	db, err := database.OpenDBConnection("postgres")
 	if err != nil {
 		// Return status 500 and database connection error.
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{

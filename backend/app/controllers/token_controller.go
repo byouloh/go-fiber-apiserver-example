@@ -76,7 +76,7 @@ func RenewTokens(c *fiber.Ctx) error {
 		userID := claims.UserID
 
 		// Create database connection.
-		db, err := database.OpenDBConnection()
+		db, err := database.OpenDBConnection("postgres")
 		if err != nil {
 			// Return status 500 and database connection error.
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
@@ -116,6 +116,7 @@ func RenewTokens(c *fiber.Ctx) error {
 		}
 
 		// Create a new Redis connection.
+		// JWT을 Redis에 저장해두고 관리
 		connRedis, err := cache.RedisConnection()
 		if err != nil {
 			// Return status 500 and Redis connection error.

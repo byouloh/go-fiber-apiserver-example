@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"example.com/fiber-apiserver/pkg/utils"
-	_ "github.com/go-sql-driver/mysql"
+	// _ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
 

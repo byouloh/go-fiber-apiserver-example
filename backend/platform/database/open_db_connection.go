@@ -1,6 +1,11 @@
 package database
 
-import "example.com/fiber-apiserver/app/queries"
+import (
+	"fmt"
+
+	"example.com/fiber-apiserver/app/queries"
+	"github.com/jmoiron/sqlx"
+)
 
 // Queries struct for collect all app queries.
 type Queries struct {
@@ -9,11 +14,24 @@ type Queries struct {
 }
 
 // OpenDBConnection func for opening database connection.
-func OpenDBConnection() (*Queries, error) {
-	// Define a new PostgreSQL connection.
-	db, err := PostgreSQLConnection()
-	// Define a new MySQL connection.
-	// db, err := MySQLConnection()
+func OpenDBConnection(n string) (*Queries, error) {
+
+	var db *sqlx.DB
+	var err error
+
+	// Switch given names.
+	switch n {
+	case "postgres":
+		// Define a new PostgreSQL connection.
+		db, err = PostgreSQLConnection()
+	case "mysql":
+		// Define a new MySQL connection.
+		db, err = MySQLConnection()
+	default:
+		// Return error message.
+		return nil, fmt.Errorf("db name '%v' is not supported", n)
+	}
+
 	if err != nil {
 		return nil, err
 	}
