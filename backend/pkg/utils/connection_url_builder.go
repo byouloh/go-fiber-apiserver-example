@@ -30,6 +30,11 @@ func ConnectionURLBuilder(n string) (string, error) {
 		//     "password=%s dbname=%s sslmode=disable",
 		//     host, port, user, password, dbname)
 		//   db, err := sql.Open("postgres", psqlInfo)
+		// https://pkg.go.dev/github.com/jmoiron/sqlx#section-readme
+		// db, err := sqlx.Connect("postgres", "user=foo dbname=bar sslmode=disable")
+		// if err != nil {
+		//     log.Fatalln(err)
+		// }
 		url = fmt.Sprintf(
 			"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 			os.Getenv("POSTGRES_HOST"),
