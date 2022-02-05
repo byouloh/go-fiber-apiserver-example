@@ -6,13 +6,8 @@ Go fiber webframework을 사용하여 web api server를 만드는 예제
 이 예제는 [create-go-app/cli](https://github.com/create-go-app/cli)로 만들어진 fiber web framework을 이용한 api server 예제다.
 create-go-app 명령어를 이용하여 웹 api server를 만들어 실행해보는 과정에서 발생한 각종 오류를 기록해두고자 글을 쓰게 되었다.
 
-Go를 선택한 이유는
-- Tensorflow의 학습시킨 모델을 파이썬과 GO 형식으로 가져오기할 수 있다. 따라서, GO를 다룰 수 있으면 학습시킨 모델을 가져와서 데이타의 딥러닝 처리가 가능하다.
-- 빠르다 : GO는 컴파일 언어로 속도가 스크립트 언어들보다 매우 빠르다.
-- 서버 작업에 최적화된 언어 : 서버를 위한 언어라고 보면 된다.
-
 Fiber web framework을 선택한 이유는
-- 빠르다
+- 빠르다 : GO는 컴파일 언어로 속도가 스크립트 언어들보다 매우 빠르다.
 - node.js의 express.js와 같은 형태로 사용하도록 만들어져서 node를 다룬 사람이면 쉽다
 - go 언어를 먼저 학습하지 말고 바로 fiber를 공부하면서 go를 학습해도 된다(이건 fiber만 해당하는 사항은 아님)
 
